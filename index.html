@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dimas Yoga Pratama - Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            overflow-x: hidden;
+            background: #ffffff;
+        }
+
+        /* Navbar */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 0;
+            border-bottom: 1px solid #e0e0e0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            padding: 1rem 0;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+        }
+
+        nav a {
+            color: #1a1a1a;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #1a1a1a;
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after,
+        nav a.active::after {
+            width: 100%;
+        }
+
+        /* Sections */
+        section {
+            min-height: 100vh;
+            padding: 120px 8%;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .section-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: -2px;
+            line-height: 1.1;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: #666;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+
+        /* About Me Section */
+        #about {
+            display: flex;
+            align-items: center;
+            background: #fafafa;
+        }
+
+        /* Profile Section */
+        #profile {
+            background: #ffffff;
+            padding: 120px 8% 60px 8%; 
+        }
+
+        #profile .section-header {
+            margin-bottom: 4rem;
+        }
+
+        .profile-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .profile-left {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .profile-photo-container {
+            position: relative;
+            width: 100%;
+            max-width: 280px;
+        }
+
+        .profile-photo {
+            width: 100%;
+            aspect-ratio: 1;
+            border-radius: 24px; 
+            background: linear-gradient(135deg, #1a1a1a 0%, #4a4a4a 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            color: white;
+            font-weight: 700;
+            letter-spacing: 5px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 20px 20px 0px rgba(0,0,0,0.1);
+        }
+
+        .profile-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .contact-item {
+            font-size: 0.9rem;
+            color: #4a4a4a;
+            font-weight: 400;
+        }
+
+        .contact-item strong {
+            display: block;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 0.3rem;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+        }
+
+        .contact-link {
+            text-decoration: none;
+            color: #4a4a4a;
+            border-bottom: 1px dashed #999;
+            transition: all 0.3s ease;
+        }
+
+        .contact-link:hover {
+            color: #1a1a1a;
+            border-bottom: 1px solid #1a1a1a;
+        }
+
+        .social-media {
+            display: flex;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .social-btn {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            border: 2px solid #1a1a1a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: #1a1a1a;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-btn::before {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 100%;
+            background: #1a1a1a;
+            transition: width 0.3s ease;
+            z-index: -1;
+        }
+
+        .social-btn:hover::before {
+            width: 100%;
+        }
+
+        .social-btn:hover {
+            color: white;
+            transform: translateY(-5px);
+        }
+
+        .social-btn svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .profile-right h1 {
+            font-size: 4.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: -2px;
+            line-height: 1.1;
+        }
+
+        .profile-role {
+            font-size: 1.5rem;
+            color: #666;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            letter-spacing: 1px;
+        }
+
+        .profile-description {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #4a4a4a;
+            margin-bottom: 2.5rem;
+            max-width: 800px;
+        }
+
+        /* Tech Stack Images Style */
+        .tech-stack-row {
+            display: flex;
+            gap: 1.2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .tech-item {
+            width: 60px;
+            height: 60px;
+            background: #ffffff;
+            border: 1px solid #e0e0e0;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            padding: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+        }
+
+        .tech-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: grayscale(100%);
+            opacity: 0.6;
+            transition: all 0.3s ease;
+        }
+
+        .tech-item:hover {
+            transform: translateY(-5px);
+            border-color: #1a1a1a;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+
+        .tech-item:hover img {
+            filter: grayscale(0%);
+            opacity: 1;
+        }
+
+
+        /* Accordion */
+        .accordion {
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .accordion-item {
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .accordion-header {
+            padding: 1.5rem 0;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .accordion-header:hover {
+            padding-left: 1rem;
+        }
+
+        .accordion-header h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .accordion-icon {
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+            font-weight: 300;
+        }
+
+        .accordion-icon.active {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+
+        .accordion-content.active {
+            max-height: 2000px;
+        }
+
+        .accordion-body {
+            padding: 0 0 2rem 0;
+        }
+
+        .experience-item {
+            margin-bottom: 2rem;
+            padding-left: 2rem;
+            border-left: 2px solid #e0e0e0;
+            position: relative;
+        }
+
+        .experience-item::before {
+            content: '';
+            position: absolute;
+            left: -5px;
+            top: 5px;
+            width: 8px;
+            height: 8px;
+            background: #1a1a1a;
+            border-radius: 50%;
+        }
+
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .experience-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .experience-date {
+            color: #999;
+            font-size: 0.85rem;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+        }
+
+        .experience-org {
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color: #4a4a4a;
+        }
+
+        .experience-desc {
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* Projects Sections */
+        #projects {
+            background: #fafafa;
+        }
+
+        .section-header {
+            margin-bottom: 5rem;
+        }
+
+        .project-item {
+            display: grid;
+            gap: 5rem;
+            margin-bottom: 8rem;
+            align-items: center;
+        }
+
+        /* Layout Grid */
+        .project-item {
+            grid-template-columns: 1fr 1.2fr;
+        }
+        
+        .project-item .project-content {
+            order: 1;
+        }
+        
+        .project-item .project-image {
+            order: 2;
+        }
+
+        .project-item:nth-child(even) {
+            grid-template-columns: 1.2fr 1fr;
+        }
+
+        .project-item:nth-child(even) .project-image {
+            order: 1;
+        }
+
+        .project-item:nth-child(even) .project-content {
+            order: 2;
+        }
+
+        .project-image {
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            color: #999;
+            font-weight: 500;
+            letter-spacing: 2px;
+            position: relative;
+            transition: all 0.3s ease;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .project-image::before {
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            width: 100%;
+            height: 100%;
+            border: 1px solid #1a1a1a;
+            z-index: -1;
+            transition: all 0.3s ease;
+            border-radius: 12px;
+        }
+
+        .project-item:hover .project-image::before {
+            top: -20px;
+            left: -20px;
+        }
+
+        .project-content {
+            padding: 2rem 0;
+        }
+
+        .project-number {
+            font-size: 0.8rem;
+            color: #999;
+            font-weight: 500;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+        }
+
+        .project-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+            line-height: 1.2;
+        }
+
+        .project-link {
+            text-decoration: none;
+            color: #1a1a1a;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .project-link:hover {
+            color: #666;
+            transform: translateX(5px);
+        }
+
+        .project-link svg {
+            width: 24px;
+            height: 24px;
+            transition: transform 0.3s ease;
+            opacity: 0;
+            transform: translate(-10px, 0);
+        }
+
+        .project-link:hover svg {
+            opacity: 1;
+            transform: translate(0, -2px);
+        }
+
+        .project-description {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: #4a4a4a;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-tags {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .project-tag {
+            padding: 0.5rem 1.2rem;
+            border: 1px solid #1a1a1a;
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+
+        .project-tag:hover {
+            background: #1a1a1a;
+            color: white;
+        }
+
+        /* --- Experience Section --- */
+        #experience {
+            background: #ffffff;
+            padding-bottom: 150px;
+        }
+
+        /* --- NEW: Clickable Slider for BIONESCO --- */
+        .slider-wrapper {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 4/3;
+            max-width: 500px;
+            margin: 0 auto;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            cursor: pointer;
+        }
+
+        .slider-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out, transform 0.5s ease;
+        }
+
+        .slider-img.active {
+            opacity: 1;
+            transform: scale(1.05);
+        }
+
+        .slider-hint {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(5px);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            z-index: 10;
+            pointer-events: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .fl-layout {
+            display: flex;
+            flex-direction: column;
+            gap: 6rem;
+        }
+
+        .fl-instagram-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .carousel-container {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .carousel-track {
+            display: flex;
+            gap: 2rem;
+            width: max-content;
+            animation: scroll 30s linear infinite;
+        }
+
+        .carousel-item {
+            width: 350px;
+            height: 250px;
+            flex-shrink: 0;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #eee;
+        }
+
+        .carousel-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .fl-jersey {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+        }
+        
+        .fl-jersey img {
+            width: 100%;
+            display: block;
+        }
+
+        @media (max-width: 1024px) {
+            .profile-grid,
+            .project-item,
+            .project-item:nth-child(even),
+            .fl-instagram-row {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .project-item .project-content,
+            .project-item .project-image,
+            .project-item:nth-child(even) .project-content,
+            .project-item:nth-child(even) .project-image {
+                order: initial;
+            }
+            
+            .slider-wrapper {
+                max-width: 100%;
+            }
+            
+            .profile-photo-container {
+                max-width: 200px;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .profile-right h1 {
+                font-size: 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            section {
+                padding: 100px 5%;
+            }
+
+            nav ul {
+                gap: 1.5rem;
+            }
+
+            nav a {
+                font-size: 0.75rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .profile-right h1 {
+                font-size: 2.5rem;
+            }
+
+            .project-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav id="navbar">
+        <ul>
+            <li><a href="#about" class="nav-link">About Me</a></li>
+            <li><a href="#profile" class="nav-link">Profile</a></li>
+            <li><a href="#projects" class="nav-link">Projects</a></li>
+            <li><a href="#experience" class="nav-link">Experience</a></li>
+        </ul>
+    </nav>
+
+    <section id="about">
+        <div class="container">
+            <div class="profile-grid">
+                <div class="profile-left">
+                    <div class="profile-photo-container">
+                        <div class="profile-photo">
+                            <img src="assets/images/profile.png" alt="Dimas Yoga Pratama">
+                        </div>
+                    </div>
+                    
+                    <div class="profile-contact-info">
+                        <div class="contact-item">
+                            <strong>Email</strong>
+                            <a href="mailto:inidype@gmail.com" class="contact-link">inidype@gmail.com</a>
+                        </div>
+                        <div class="contact-item">
+                            <strong>Phone</strong>
+                            <a href="https://wa.me/6281232104149" target="_blank" class="contact-link">+62 812 3210 4149</a>
+                        </div>
+                        <div class="contact-item">
+                            <strong>Location</strong>
+                            Malang, East Java
+                        </div>
+                    </div>
+
+                    <div class="social-media">
+                        <a href="https://instagram.com/yourusername" target="_blank" class="social-btn" title="Instagram">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                            </svg>
+                        </a>
+                        <a href="https://www.linkedin.com/in/dimasyogap/" target="_blank" class="social-btn" title="LinkedIn">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                                <rect x="2" y="9" width="4" height="12"></rect>
+                                <circle cx="4" cy="4" r="2"></circle>
+                            </svg>
+                        </a>
+                        <a href="https://github.com/yourusername" target="_blank" class="social-btn" title="GitHub">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="profile-right">
+                    <h1>Dimas Yoga<br>Pratama</h1>
+                    <p class="profile-role">UI/UX Designer & Developer</p>
+                    <p class="profile-description">
+                        Undergraduate student with a deep passion for UI/UX Design and Software Development. 
+                        Possesses a solid technical foundation in IT Support and a strong interest in acquiring 
+                        Product Management skills to deliver holistic digital solutions.
+                    </p>
+
+                    <div class="tech-stack-row">
+                        <div class="tech-item" title="Figma">
+                            <img src="assets/images/figma.png" alt="Figma">
+                        </div>
+                        <div class="tech-item" title="Node JS">
+                            <img src="assets/images/node.svg" alt="Node JS">
+                        </div>
+                        <div class="tech-item" title="React JS">
+                            <img src="assets/images/react.png" alt="React JS">
+                        </div>
+                        <div class="tech-item" title="Android">
+                            <img src="assets/images/androidstudio.png" alt="Android">
+                        </div>
+                        <div class="tech-item" title="Photoshop">
+                            <img src="assets/images/ps.png" alt="Photoshop">
+                        </div>
+                        <div class="tech-item" title="Git">
+                            <img src="assets/images/git.png" alt="Git">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="profile">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Profile</h2>
+                <p class="section-subtitle">Education, organizational, and professional experience</p>
+            </div>
+
+            <div class="accordion">
+                        <div class="accordion-item">
+                            <div class="accordion-header" onclick="toggleAccordion(this)">
+                                <h3>Education</h3>
+                                <span class="accordion-icon">+</span>
+                            </div>
+                            <div class="accordion-content">
+                                <div class="accordion-body">
+                                    <div class="experience-item">
+                                        <div class="experience-header">
+                                            <div class="experience-title">Brawijaya University</div>
+                                            <div class="experience-date">AUG 2023 - PRESENT</div>
+                                        </div>
+                                        <div class="experience-org">Information Technology</div>
+                                        <p class="experience-desc">GPA: 3.84/4.00 - Relevant Coursework: UI/UX Design, Web & Mobile Development, IT Project Management, Database Systems, Computer Network, Cybersecurity</p>
+                                    </div>
+                                    <div class="experience-item">
+                                        <div class="experience-header">
+                                            <div class="experience-title">Telkom Malang Vocational High School</div>
+                                            <div class="experience-date">JUL 2020 - MAY 2023</div>
+                                        </div>
+                                        <div class="experience-org">Software Engineering</div>
+                                        <p class="experience-desc">Programming, Graphic Design, Computer Network, Operating System</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <div class="accordion-header" onclick="toggleAccordion(this)">
+                                <h3>Organizational & Committee Experience</h3>
+                                <span class="accordion-icon">+</span>
+                            </div>
+                            <div class="accordion-content">
+                                <div class="accordion-body">
+                                    <div class="experience-item">
+                                        <div class="experience-header">
+                                            <div class="experience-title">BIOS National Esports Competition 2025</div>
+                                            <div class="experience-date">AUG - OCT 2025</div>
+                                        </div>
+                                        <div class="experience-org">Head of Committee</div>
+                                        <p class="experience-desc">Directed a national-scale esports tournament involving 150+ participants and led a committee of 35+ members</p>
+                                    </div>
+                                    <div class="experience-item">
+                                        <div class="experience-header">
+                                            <div class="experience-title">FILKOM LEAGUE 2025</div>
+                                            <div class="experience-date">MAR - JUN 2025</div>
+                                        </div>
+                                        <div class="experience-org">Head of Creative, Design, and Documentation</div>
+                                        <p class="experience-desc">Led creation of all visual designs including Instagram feeds, jerseys, and certificates</p>
+                                    </div>
+                                    <div class="experience-item">
+                                        <div class="experience-header">
+                                            <div class="experience-title">BIOS - Esports Division</div>
+                                            <div class="experience-date">JAN - DEC 2025</div>
+                                        </div>
+                                        <div class="experience-org">Vice Head of Esports Division</div>
+                                        <p class="experience-desc">Co-led 6 staff members and managed 15+ athletes across 2 game divisions</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <div class="accordion-header" onclick="toggleAccordion(this)">
+                                <h3>Work Experience</h3>
+                                <span class="accordion-icon">+</span>
+                            </div>
+                            <div class="accordion-content">
+                                <div class="accordion-body">
+                                    <div class="experience-item">
+                                        <div class="experience-header">
+                                            <div class="experience-title">PDAM Delta Tirta Sidoarjo</div>
+                                            <div class="experience-date">JUN - AUG 2022</div>
+                                        </div>
+                                        <div class="experience-org">Developer & UI/UX Designer - Internship</div>
+                                        <p class="experience-desc">Designed user-centric interfaces and developed responsive web-based complaint application using React.js and Node.js</p>
+                                    </div>
+                                    <div class="experience-item">
+                                        <div class="experience-header">
+                                            <div class="experience-title">Perumda Tirta Kanjuruhan</div>
+                                            <div class="experience-date">SEP - NOV 2022</div>
+                                        </div>
+                                        <div class="experience-org">Research & Development - Internship</div>
+                                        <p class="experience-desc">Executed technical troubleshooting and network maintenance</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Projects</h2>
+                <p class="section-subtitle">A collection of my UI/UX designs and software development work</p>
+            </div>
+
+            <div class="project-item">
+                <div class="project-content">
+                    <div class="project-number">01</div>
+                    <h3 class="project-title">
+                        <a href="http://clips.id/VisCalPrototype" class="project-link" target="_blank">
+                            VisCal 
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                <polyline points="15 3 21 3 21 9"></polyline>
+                                <line x1="10" y1="14" x2="21" y2="3"></line>
+                            </svg>
+                        </a>
+                    </h3>
+                    <p class="project-description">
+                        Inclusive Math Learning App Based on Generative AI for People with Dyscalculia. 
+                        Designed to make mathematics accessible and engaging for learners with special needs.
+                    </p>
+                    <div class="project-tags">
+                        <span class="project-tag">UI/UX Design</span>
+                        <span class="project-tag">Accessibility</span>
+                    </div>
+                </div>
+                <div class="project-image">
+                    <img src="assets/images/viscal.png" alt="VisCal">
+                </div>
+            </div>
+
+            <div class="project-item">
+                <div class="project-content">
+                    <div class="project-number">02</div>
+                    <h3 class="project-title">
+                        <a href="clips.id/KarirUBPrototype" class="project-link" target="_blank">
+                            KarirUB
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                <polyline points="15 3 21 3 21 9"></polyline>
+                                <line x1="10" y1="14" x2="21" y2="3"></line>
+                            </svg>
+                        </a>
+                    </h3>
+                    <p class="project-description">
+                        Career development platform for Brawijaya alumni. 
+                        Connecting students with internship and job opportunities through an intuitive interface.
+                    </p>
+                    <div class="project-tags">
+                        <span class="project-tag">UI/UX Design</span>
+                        <span class="project-tag">Prototyping</span>
+                    </div>
+                </div>
+                <div class="project-image">
+                    <img src="assets/images/karirub.png" alt="KarirUB">
+                </div>
+            </div>
+
+            <div class="project-item">
+                <div class="project-content">
+                    <div class="project-number">03</div>
+                    <h3 class="project-title">
+                        <a href="https://github.com/dimassypp/BookPort" class="project-link" target="_blank">
+                            BookPort
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                <polyline points="15 3 21 3 21 9"></polyline>
+                                <line x1="10" y1="14" x2="21" y2="3"></line>
+                            </svg>
+                        </a>
+                    </h3>
+                    <p class="project-description">
+                        Platform E-Commerce Buku Impor Berbasis Blockchain. 
+                        A full-stack web application for importing and selling international books with blockchain integration.
+                    </p>
+                    <div class="project-tags">
+                        <span class="project-tag">Fullstack</span>
+                        <span class="project-tag">Blockchain</span>
+                    </div>
+                </div>
+                <div class="project-image">
+                     <img src="assets/images/bookport.png" alt="BookPort">
+                </div>
+            </div>
+
+            <div class="project-item">
+                <div class="project-content">
+                    <div class="project-number">04</div>
+                    <h3 class="project-title">
+                        <a href="https://github.com/dimassypp/KantinGKM" class="project-link" target="_blank">
+                            KantinGKM
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                <polyline points="15 3 21 3 21 9"></polyline>
+                                <line x1="10" y1="14" x2="21" y2="3"></line>
+                            </svg>
+                        </a>
+                    </h3>
+                    <p class="project-description">
+                        Mobile application for canteen management system. 
+                        Streamlining food ordering and payment processes for campus cafeterias.
+                    </p>
+                    <div class="project-tags">
+                        <span class="project-tag">Mobile Dev</span>
+                        <span class="project-tag">Management</span>
+                    </div>
+                </div>
+                <div class="project-image">
+                     <img src="assets/images/kantingkm.png" alt="KantinGKM">
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="experience">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Experience</h2>
+                <p class="section-subtitle">Highlights from my organizational leadership</p>
+            </div>
+
+            <div class="project-item" style="align-items: flex-start;">
+                <div class="project-content" style="order: 1;">
+                    <div class="project-number">2025</div>
+                    <h3 class="project-title">
+                        <a href="https://www.instagram.com/bionesco25/" class="project-link" target="_blank">
+                            BIONESCO
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                <polyline points="15 3 21 3 21 9"></polyline>
+                                <line x1="10" y1="14" x2="21" y2="3"></line>
+                            </svg>
+                        </a>
+                    </h3>
+                    <p class="project-description">
+                        As the Head of Committee, I directed a national-scale esports tournament involving 150+ participants. 
+                        I oversaw the entire project lifecycle from strategic planning to execution, managing a committee of 35+ members.
+                    </p>
+                </div>
+                <div class="project-image" style="order: 2; background: transparent; border: none; overflow: visible; box-shadow: none;">
+                    <div class="slider-wrapper" onclick="nextSlide()">
+                        <div class="slider-hint">Click for Next Photo</div>
+                        <img src="assets/images/bionesco1.jpg" class="slider-img active" alt="Activity 1">
+                        <img src="assets/images/bionesco2.jpg" class="slider-img" alt="Activity 2">
+                        <img src="assets/images/bionesco3.jpg" class="slider-img" alt="Activity 3">
+                    </div>
+                </div>
+            </div>
+
+            <div class="fl-layout">
+                <div class="fl-instagram-row">
+                    <div class="project-image">
+                         <img src="assets/images/fl.png" alt="FilkomLeague">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">
+                            <a href="https://www.instagram.com/filkom.league/" class="project-link" target="_blank">
+                            FILKOM LEAGUE
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                <polyline points="15 3 21 3 21 9"></polyline>
+                                <line x1="10" y1="14" x2="21" y2="3"></line>
+                            </svg>
+                        </a>
+                        </h3>
+                        <p class="project-description">
+                            As Head of Creative, Design, and Documentation, I led the creation of all visual assets. 
+                            This included cohesive Instagram feed designs, documentation, and jersey design to maintain brand identity throughout the event.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="carousel-container">
+                    <div class="carousel-track">
+                        <div class="carousel-item"><img src="assets/images/doc-1.jpg" alt="Doc 1"></div>
+                        <div class="carousel-item"><img src="assets/images/doc-2.png" alt="Doc 2"></div>
+                        <div class="carousel-item"><img src="assets/images/doc-3.jpg" alt="Doc 3"></div>
+                        <div class="carousel-item"><img src="assets/images/doc-4.png" alt="Doc 4"></div>
+                        
+                        <div class="carousel-item"><img src="assets/images/doc-1.jpg" alt="Doc 1"></div>
+                        <div class="carousel-item"><img src="assets/images/doc-2.png" alt="Doc 2"></div>
+                        <div class="carousel-item"><img src="assets/images/doc-3.jpg" alt="Doc 3"></div>
+                        <div class="carousel-item"><img src="assets/images/doc-4.png" alt="Doc 4"></div>
+                    </div>
+                </div>
+
+                <div class="fl-jersey">
+                    <div style="background: #f0f0f0; height: 400px; display:flex; align-items:center; justify-content:center;">
+                        <img src="assets/images/jersey.png" alt="FilkomLeagueJersey">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            });
+        });
+
+        // Accordion functionality
+        function toggleAccordion(header) {
+            const content = header.nextElementSibling;
+            const icon = header.querySelector('.accordion-icon');
+            const isActive = content.classList.contains('active');
+
+            if (isActive) {
+                content.classList.remove('active');
+                icon.classList.remove('active');
+                icon.textContent = '+';
+            } else {
+                content.classList.add('active');
+                icon.classList.add('active');
+                icon.textContent = '−';
+            }
+        }
+
+        // Slider functionality 
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slider-img');
+
+        function nextSlide() {
+            if(slides.length === 0) return;
+            slides[currentSlide].classList.remove('active');
+
+            currentSlide = (currentSlide + 1) % slides.length;
+
+            slides[currentSlide].classList.add('active');
+        }
+
+        // Navbar scroll effect
+        let lastScroll = 0;
+        const navbar = document.getElementById('navbar');
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+
+            lastScroll = currentScroll;
+        });
+
+        // Active navbar on scroll
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
