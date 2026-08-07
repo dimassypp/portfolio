@@ -568,7 +568,7 @@
                     </div>
                 </div>
                 <div class="gallery reveal">
-                    <div class="gallery-frame"><img id="galleryImage" src="../assets/images/kantingkm1.png"
+                    <div class="gallery-frame"><img id="galleryImage" src="../assets/images/Kantingkm1.png"
                             alt="KantinGKM gallery image"></div>
                     <div class="gallery-controls"><span class="gallery-count" id="galleryCount">01 / 02</span>
                         <div class="gallery-buttons"><button id="prev" type="button">←</button><button id="next"
@@ -582,7 +582,7 @@
                     ↑</a></div>
         </section>
     </main>
-    <script>const gallery = ["../assets/images/kantingkm1.png", "../assets/images/kantingkm2.png"]; let i = 0; const im = document.getElementById('galleryImage'), ct = document.getElementById('galleryCount'); function render() { im.style.opacity = 0; setTimeout(() => { im.src = gallery[i]; im.style.opacity = 1; ct.textContent = String(i + 1).padStart(2, '0') + ' / ' + String(gallery.length).padStart(2, '0') }, 120) } document.getElementById('next').onclick = () => { i = (i + 1) % gallery.length; render() }; document.getElementById('prev').onclick = () => { i = (i - 1 + gallery.length) % gallery.length; render() }; const o = new IntersectionObserver(es => es.forEach(e => e.isIntersecting && e.target.classList.add('show')), { threshold: .12 }); document.querySelectorAll('.reveal').forEach(e => o.observe(e));</script>
+    <script>const gallery = ["../assets/images/Kantingkm1.png", "../assets/images/Kantingkm - 2.png"]; let i = 0; const im = document.getElementById('galleryImage'), ct = document.getElementById('galleryCount'); function render() { im.style.opacity = 0; setTimeout(() => { im.src = gallery[i]; im.style.opacity = 1; ct.textContent = String(i + 1).padStart(2, '0') + ' / ' + String(gallery.length).padStart(2, '0') }, 120) } document.getElementById('next').onclick = () => { i = (i + 1) % gallery.length; render() }; document.getElementById('prev').onclick = () => { i = (i - 1 + gallery.length) % gallery.length; render() }; const o = new IntersectionObserver(es => es.forEach(e => e.isIntersecting && e.target.classList.add('show')), { threshold: .12 }); document.querySelectorAll('.reveal').forEach(e => o.observe(e));</script>
 </body>
 
 </html>
