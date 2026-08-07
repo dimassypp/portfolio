@@ -1,0 +1,588 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>KantinGKM - Dimas Yoga Pratama</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+        :root {
+            --bg: #fff;
+            --surface: #f7f7f5;
+            --ink: #101114;
+            --muted: #6d7078;
+            --line: #e5e5e2;
+            --accent: #2b3bf2;
+            --max: 1240px;
+            --pad: clamp(20px, 5vw, 72px);
+            --ease: cubic-bezier(.22, .9, .28, 1)
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--ink);
+            font-family: Montserrat, sans-serif;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased
+        }
+
+        img {
+            display: block;
+            max-width: 100%
+        }
+
+        a {
+            color: inherit
+        }
+
+        .container {
+            width: min(var(--max), calc(100% - 2 * var(--pad)));
+            margin: auto
+        }
+
+        .navbar {
+            position: fixed;
+            top: 18px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 20;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            padding: 7px 9px 7px 18px;
+            border: 1px solid #ddd;
+            border-radius: 999px;
+            background: #fffffff2;
+            backdrop-filter: blur(18px);
+            box-shadow: 0 12px 40px #14141e14
+        }
+
+        .navbar a {
+            font: 600 .78rem 'Bricolage Grotesque', sans-serif;
+            text-decoration: none;
+            padding: 8px 13px;
+            border-radius: 999px
+        }
+
+        .navbar a:hover {
+            background: #f0f0ef
+        }
+
+        .navbar .brand {
+            font-weight: 700;
+            letter-spacing: .08em
+        }
+
+        .hero {
+            padding: 180px 0 100px
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr .8fr;
+            gap: 80px;
+            align-items: center
+        }
+
+        .kicker,
+        .section-num,
+        .meta-label,
+        .feature-num,
+        .gallery-count {
+            font: 600 .72rem 'Bricolage Grotesque', sans-serif;
+            letter-spacing: .1em;
+            text-transform: uppercase
+        }
+
+        .kicker,
+        .section-num,
+        .feature-num {
+            color: var(--accent)
+        }
+
+        .hero h1 {
+            font: 700 clamp(4rem, 9vw, 8.8rem)/.9 'Bricolage Grotesque', sans-serif;
+            letter-spacing: -.055em
+        }
+
+        .hero h1 span {
+            color: var(--accent)
+        }
+
+        .hero-description {
+            margin-top: 28px;
+            max-width: 600px;
+            color: var(--muted)
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 32px
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 46px;
+            padding: 0 20px;
+            border-radius: 999px;
+            text-decoration: none;
+            font: 600 .82rem 'Bricolage Grotesque', sans-serif;
+            border: 1px solid var(--ink);
+            transition: .35s var(--ease)
+        }
+
+        .button.primary {
+            background: var(--ink);
+            color: #fff
+        }
+
+        .button:hover {
+            transform: translateY(-2px)
+        }
+
+        .button.primary:hover {
+            background: var(--accent);
+            border-color: var(--accent)
+        }
+
+        .button.ghost:hover {
+            background: var(--ink);
+            color: #fff
+        }
+
+        .hero-media img {
+            width: 100%;
+            aspect-ratio: 16/9;
+            object-fit: cover;
+            border-radius: 28px
+        }
+
+        .hero-media {
+            position: relative
+        }
+
+        .hero-media:after {
+            content: '';
+            position: absolute;
+            inset: 16px -16px -16px 16px;
+            border: 1px solid var(--line);
+            border-radius: 28px;
+            z-index: -1
+        }
+
+        .meta {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+            margin-top: 90px
+        }
+
+        .meta-item {
+            padding: 24px 20px 24px 0
+        }
+
+        .meta-label {
+            display: block;
+            color: var(--muted);
+            margin-bottom: 5px
+        }
+
+        .meta-value {
+            font: 600 1rem 'Bricolage Grotesque', sans-serif
+        }
+
+        .section {
+            padding: 110px 0
+        }
+
+        .section.alt {
+            background: var(--surface)
+        }
+
+        .section-head {
+            display: grid;
+            grid-template-columns: .7fr 1.3fr;
+            gap: 40px;
+            margin-bottom: 70px
+        }
+
+        .section h2 {
+            font: 700 clamp(2.7rem, 6vw, 5.5rem)/.95 'Bricolage Grotesque', sans-serif;
+            letter-spacing: -.045em
+        }
+
+        .section-lead {
+            font-size: 1.05rem;
+            color: var(--muted);
+            max-width: 65ch;
+            margin-top: 20px
+        }
+
+        .case-copy {
+            display: grid;
+            grid-template-columns: .75fr 1.25fr;
+            gap: 60px
+        }
+
+        .case-copy h3,
+        .feature h3 {
+            font: 650 1.35rem 'Bricolage Grotesque', sans-serif
+        }
+
+        .case-copy p,
+        .list li {
+            color: #454850
+        }
+
+        .list {
+            display: grid;
+            gap: 14px
+        }
+
+        .list li {
+            position: relative;
+            padding-left: 24px
+        }
+
+        .list li:before {
+            content: '↗';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: 700
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1px;
+            background: var(--line);
+            border: 1px solid var(--line)
+        }
+
+        .feature {
+            background: var(--bg);
+            padding: 30px
+        }
+
+        .feature h3 {
+            margin: 18px 0 8px
+        }
+
+        .feature p {
+            font-size: .9rem;
+            color: var(--muted)
+        }
+
+        .stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px
+        }
+
+        .chip {
+            padding: 10px 16px;
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            font: 600 .82rem 'Bricolage Grotesque', sans-serif;
+            background: #fff
+        }
+
+        .gallery-frame {
+            position: relative;
+            overflow: hidden;
+            border-radius: 22px;
+            background: #eee;
+            aspect-ratio: 16/9
+        }
+
+        .gallery-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity .2s
+        }
+
+        .gallery-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 18px
+        }
+
+        .gallery-buttons {
+            display: flex;
+            gap: 8px
+        }
+
+        .gallery-buttons button {
+            width: 46px;
+            height: 46px;
+            border: 1px solid var(--line);
+            background: #fff;
+            border-radius: 50%;
+            font-size: 1.1rem;
+            cursor: pointer
+        }
+
+        .gallery-buttons button:hover {
+            background: var(--ink);
+            color: #fff
+        }
+
+        .note {
+            margin-top: 15px;
+            color: var(--muted);
+            font-size: .78rem
+        }
+
+        .bottom-nav {
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid var(--line);
+            padding: 30px 0 80px
+        }
+
+        .bottom-nav a {
+            font: 600 .9rem 'Bricolage Grotesque', sans-serif;
+            text-decoration: none
+        }
+
+        .bottom-nav a:hover {
+            color: var(--accent)
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(22px);
+            transition: .8s var(--ease)
+        }
+
+        .reveal.show {
+            opacity: 1;
+            transform: none
+        }
+
+        @media(max-width:800px) {
+            .navbar {
+                width: calc(100% - 28px);
+                justify-content: space-between
+            }
+
+            .navbar a:not(.brand) {
+                display: none
+            }
+
+            .hero {
+                padding-top: 130px
+            }
+
+            .hero-grid,
+            .section-head,
+            .case-copy {
+                grid-template-columns: 1fr
+            }
+
+            .hero-grid {
+                gap: 45px
+            }
+
+            .hero h1 {
+                font-size: clamp(3.5rem, 17vw, 6rem)
+            }
+
+            .meta {
+                grid-template-columns: 1fr
+            }
+
+            .meta-item {
+                border-bottom: 1px solid var(--line)
+            }
+
+            .section {
+                padding: 80px 0
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr
+            }
+
+            .bottom-nav {
+                padding-bottom: 50px
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar"><a class="brand" href="../index.html">DYP</a><a href="#overview">Overview</a><a
+            href="#problem">Problem</a><a href="#solution">Solution</a><a href="#contributions">Contributions</a><a
+            href="#features">Features</a><a href="#stack">Stack</a><a href="#gallery">Gallery</a></nav>
+    <main>
+        <section class="hero">
+            <div class="container">
+                <div class="hero-grid">
+                    <div class="reveal">
+                        <p class="kicker">05 / Development · Mobile</p>
+                        <h1>KantinGKM<span>.</span></h1>
+                        <p class="hero-description">A mobile canteen management system designed to streamline food ordering and payment processes for campus cafeterias, with UI/UX designed around the needs of canteen operators.</p>
+                        <div class="hero-actions"><a class="button primary"
+                                href="https://github.com/dimassypp/KantinGKM" target="_blank" rel="noopener">View in
+                                GitHub ↗</a><a class="button ghost" href="../index.html#projects">Back to Projects</a>
+                        </div>
+                    </div>
+                    <div class="hero-media reveal"><img src="../assets/images/kantingkm.png"
+                            alt="KantinGKM project preview"></div>
+                </div>
+                <div class="meta reveal">
+                    <div class="meta-item"><span class="meta-label">Role</span><span class="meta-value">Developer · UI/UX Designer</span>
+                    </div>
+                    <div class="meta-item"><span class="meta-label">Timeline</span><span class="meta-value">2025</span>
+                    </div>
+                    <div class="meta-item"><span class="meta-label">Project</span><span
+                            class="meta-value">KantinGKM</span></div>
+                </div>
+            </div>
+        </section>
+        <section class="section" id="overview">
+            <div class="container">
+                <div class="section-head reveal"><span class="section-num">01 - OVERVIEW</span>
+                    <div>
+                        <h2>What is<br>KantinGKM?</h2>
+                        <p class="section-lead">KantinGKM is a mobile canteen management system designed to streamline food ordering and payment processes for campus cafeterias. The interface was designed from the perspective of canteen operators, helping them manage their daily activities through a more structured digital experience.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="section alt" id="problem">
+            <div class="container">
+                <div class="section-head reveal"><span class="section-num">02 - PROBLEM</span>
+                    <div>
+                        <h2>The challenge<br>behind it.</h2>
+                    </div>
+                </div>
+                <div class="case-copy reveal">
+                    <h3>Problem</h3>
+                    <p>Campus canteen transactions can become inefficient when ordering and payment are handled manually. From the canteen operator's perspective, managing incoming orders and keeping track of transactions can become increasingly difficult without a structured system.</p>
+                </div>
+            </div>
+        </section>
+        <section class="section" id="solution">
+            <div class="container">
+                <div class="section-head reveal"><span class="section-num">03 - SOLUTION</span>
+                    <div>
+                        <h2>Turning the<br>problem around.</h2>
+                    </div>
+                </div>
+                <div class="case-copy reveal">
+                    <h3>Solution</h3>
+                    <p>KantinGKM digitizes the canteen ordering and management experience into a mobile application, giving canteen operators a structured way to manage orders and transactions while making the overall process more organized and convenient.
+                    </p>
+                </div>
+            </div>
+        </section>
+        <section class="section alt" id="contributions">
+            <div class="container">
+                <div class="section-head reveal"><span class="section-num">04 - CONTRIBUTIONS</span>
+                    <div>
+                        <h2>My role in<br>KantinGKM.</h2>
+                    </div>
+                </div>
+                <div class="case-copy reveal">
+                    <h3>What I contributed</h3>
+                    <ul class="list">
+                        <li>Designed the UI/UX from the perspective of canteen operators.</li>
+                        <li>Developed the mobile application experience for canteen ordering and management.</li>
+                        <li>Designed and structured core ordering and payment-related flows.</li>
+                        <li>Structured the application around campus cafeteria users.</li>
+                        <li>Worked across application logic and interface.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <section class="section" id="features">
+            <div class="container">
+                <div class="section-head reveal"><span class="section-num">05 - FEATURES</span>
+                    <div>
+                        <h2>Designed around<br>the user.</h2>
+                    </div>
+                </div>
+                <div class="feature-grid">
+                    <article class='feature reveal'><span class='feature-num'>01</span>
+                        <h3>Digital food ordering</h3>
+                        <p>Part of the KantinGKM product experience.</p>
+                    </article>
+                    <article class='feature reveal'><span class='feature-num'>02</span>
+                        <h3>Canteen management</h3>
+                        <p>Part of the KantinGKM product experience.</p>
+                    </article>
+                    <article class='feature reveal'><span class='feature-num'>03</span>
+                        <h3>Order processing</h3>
+                        <p>Part of the KantinGKM product experience.</p>
+                    </article>
+                    <article class='feature reveal'><span class='feature-num'>04</span>
+                        <h3>Payment flow</h3>
+                        <p>Part of the KantinGKM product experience.</p>
+                    </article>
+                    <article class='feature reveal'><span class='feature-num'>05</span>
+                        <h3>Campus cafeteria mobile experience</h3>
+                        <p>Part of the KantinGKM product experience.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+        <section class="section alt" id="stack">
+            <div class="container">
+                <div class="section-head reveal"><span class="section-num">06 - TECH STACK</span>
+                    <div>
+                        <h2>Tools &amp;<br>technology.</h2>
+                    </div>
+                </div>
+                <div class="stack reveal"><span class='chip'>Mobile Development</span><span class='chip'>Application
+                        Development</span><span class='chip'>GitHub</span></div>
+            </div>
+        </section>
+        <section class="section" id="gallery">
+            <div class="container">
+                <div class="section-head reveal"><span class="section-num">07 - GALLERY</span>
+                    <div>
+                        <h2>A closer<br>look.</h2>
+                        <p class="section-lead">Use the arrows to move through project visuals.</p>
+                    </div>
+                </div>
+                <div class="gallery reveal">
+                    <div class="gallery-frame"><img id="galleryImage" src="../assets/images/kantingkm1.png"
+                            alt="KantinGKM gallery image"></div>
+                    <div class="gallery-controls"><span class="gallery-count" id="galleryCount">01 / 02</span>
+                        <div class="gallery-buttons"><button id="prev" type="button">←</button><button id="next"
+                                type="button">→</button></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="container">
+            <div class="bottom-nav"><a href="../index.html#projects">← All Projects</a><a href="#overview">Back to top
+                    ↑</a></div>
+        </section>
+    </main>
+    <script>const gallery = ["../assets/images/kantingkm1.png", "../assets/images/kantingkm2.png"]; let i = 0; const im = document.getElementById('galleryImage'), ct = document.getElementById('galleryCount'); function render() { im.style.opacity = 0; setTimeout(() => { im.src = gallery[i]; im.style.opacity = 1; ct.textContent = String(i + 1).padStart(2, '0') + ' / ' + String(gallery.length).padStart(2, '0') }, 120) } document.getElementById('next').onclick = () => { i = (i + 1) % gallery.length; render() }; document.getElementById('prev').onclick = () => { i = (i - 1 + gallery.length) % gallery.length; render() }; const o = new IntersectionObserver(es => es.forEach(e => e.isIntersecting && e.target.classList.add('show')), { threshold: .12 }); document.querySelectorAll('.reveal').forEach(e => o.observe(e));</script>
+</body>
+
+</html>
